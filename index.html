@@ -3,62 +3,302 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>コミュニケーション16タイプ診断</title>
-  <meta name="description" content="コミュニケーション傾向を16タイプで診断するサイト" />
+  <title>SMタイプ診断</title>
+  <meta name="description" content="FBCOタイプ × M度/S度 × 称号 × ランク × 覚醒の統合型診断" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <main class="wrap">
-    <section class="card hero" id="hero">
-      <p class="eyebrow">16 TYPE COMMUNICATION TEST</p>
-      <h1>コミュニケーション16タイプ診断</h1>
-      <p class="lead">
-        いじり耐性、攻め・受け、関係性、メンタル耐性、考え方の傾向から
-        あなたのタイプを表示します。
-      </p>
-      <button id="startBtn" class="btn primary">診断をはじめる</button>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-grid"></div>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero card" id="hero">
+      <div class="hero-top">
+        <div class="hero-badge">SM TYPE TEST</div>
+        <h1>SMタイプ診断</h1>
+        <p class="hero-sub">
+          FBCOタイプ × M度 / S度 × 称号 × ランク × 覚醒
+        </p>
+        <p class="hero-lead">
+          性格タイプ、SM傾向、称号、ランク、覚醒までまとめて判定する統合型診断です。
+          質問はランダム順で表示され、結果は画像保存してSNSにシェアできます。
+        </p>
+        <button class="primary-btn" id="startBtn">診断をはじめる</button>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <div class="feature-title">FBCOタイプ判定</div>
+          <div class="feature-text">4つの性格軸からタイプを判定します。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">M度 / S度を数値化</div>
+          <div class="feature-text">M度とS度を独立して算出し、複合称号を決定します。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title">ランク / 覚醒 / 隠し称号</div>
+          <div class="feature-text">ランク色、覚醒演出、隠し称号にも対応しています。</div>
+        </div>
+      </div>
     </section>
 
-    <section class="card hidden" id="quizCard">
-      <div class="progressRow">
-        <span id="progressText">1 / 16</span>
-        <div class="progressBar">
-          <div id="progressFill"></div>
+    <!-- QUIZ -->
+    <section class="quiz hidden" id="quizCard">
+      <div class="quiz-top card-lite">
+        <div class="quiz-progress-head">
+          <div class="small-label">QUESTION</div>
+          <div id="progressText" class="progress-text">1 / 60</div>
+        </div>
+        <div class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
         </div>
       </div>
 
-      <p class="questionTag" id="questionTag">質問</p>
-      <h2 class="questionText" id="questionText"></h2>
+      <div class="quiz-main card">
+        <div class="question-meta" id="questionTag">ランダム出題</div>
+        <h2 class="question-title" id="questionText"></h2>
+        <p class="scale-note">1 = 全く思わない / 5 = とてもそう思う</p>
 
-      <div class="choices" id="choices"></div>
+        <div id="choices" class="choices"></div>
 
-      <div class="navRow">
-        <button id="prevBtn" class="btn sub">戻る</button>
+        <div class="quiz-nav">
+          <button class="ghost-btn" id="prevBtn">戻る</button>
+        </div>
       </div>
     </section>
 
-    <section class="card hidden" id="resultCard">
-      <p class="eyebrow">YOUR TYPE</p>
-      <h2 id="resultTypeCode">FMCT</h2>
-      <h3 id="resultTypeName">クールな参謀</h3>
-      <p id="resultCatch" class="catch"></p>
+    <!-- RESULT -->
+    <section class="result hidden" id="resultPage">
+      <!-- SNS CARD -->
+      <section class="result-card card rank-SSR" id="resultCard">
+        <div class="result-card-inner">
+          <div class="result-glow"></div>
 
-      <div class="axisBox">
-        <div><strong>思考：</strong><span id="axis1"></span></div>
-        <div><strong>受け/攻め：</strong><span id="axis2"></span></div>
-        <div><strong>関係性：</strong><span id="axis3"></span></div>
-        <div><strong>メンタル：</strong><span id="axis4"></span></div>
+          <div class="card-header">
+            <div class="type-symbol" id="cardTypeSymbol">✨</div>
+            <div class="type-name" id="cardTypeName">オールラウンダー</div>
+            <div class="type-code" id="cardTypeCode">FBCO</div>
+          </div>
+
+          <div class="card-main-grid">
+            <div class="percent-section">
+              <div class="percent">
+                <span>M度</span>
+                <strong id="cardMValue">72</strong>
+              </div>
+              <div class="percent">
+                <span>S度</span>
+                <strong id="cardSValue">41</strong>
+              </div>
+            </div>
+
+            <div class="title-section">
+              <div class="title-label">称号</div>
+              <div class="title-name" id="cardTitleName">駆け引き上手</div>
+            </div>
+          </div>
+
+          <div class="card-bottom-row">
+            <div class="rank-badge">
+              <span class="rank-icon" id="cardRankIcon">⭐</span>
+              <span id="cardRankValue">UR+</span>
+            </div>
+            <div class="awakening-text" id="cardAwakeningText"></div>
+          </div>
+
+          <div class="share-footer">SMタイプ診断</div>
+        </div>
+      </section>
+
+      <!-- TYPE -->
+      <section class="card">
+        <div class="small-label">YOUR TYPE</div>
+        <div class="result-top-head">
+          <div class="result-top-left">
+            <h2 class="result-name">
+              <span class="inline-symbol" id="resultTypeSymbol">✨</span>
+              <span id="resultTypeName">オールラウンダー</span>
+            </h2>
+            <p class="result-catch" id="resultTypeCatch">
+              柔軟さと観察力を併せ持つ、多面的なタイプ。
+            </p>
+          </div>
+          <div class="result-code-box" id="resultTypeCode">FBCO</div>
+        </div>
+      </section>
+
+      <!-- MAIN STATS -->
+      <div class="result-grid-2">
+        <section class="card">
+          <h3 class="section-title">SM結果</h3>
+          <div class="stats-grid small-stats">
+            <div class="mini-stat">
+              <div class="mini-label">M度</div>
+              <div class="mini-value" id="mValue">72</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-label">S度</div>
+              <div class="mini-value" id="sValue">41</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-label">称号</div>
+              <div class="mini-value smaller" id="resultTitle">駆け引き上手</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-label">ランク</div>
+              <div class="mini-value smaller" id="resultRank">UR+</div>
+            </div>
+          </div>
+          <div class="awakening-line" id="awakeningLine"></div>
+        </section>
+
+        <section class="card">
+          <h3 class="section-title">FBCOバランス</h3>
+
+          <div class="trait">
+            <div class="trait-head">
+              <span>F</span>
+              <span id="fLabel">68</span>
+            </div>
+            <div class="single-bar">
+              <div id="barF" class="bar left-bar"></div>
+            </div>
+          </div>
+
+          <div class="trait">
+            <div class="trait-head">
+              <span>B</span>
+              <span id="bLabel">32</span>
+            </div>
+            <div class="single-bar">
+              <div id="barB" class="bar left-bar"></div>
+            </div>
+          </div>
+
+          <div class="trait">
+            <div class="trait-head">
+              <span>C</span>
+              <span id="cLabel">55</span>
+            </div>
+            <div class="single-bar">
+              <div id="barC" class="bar left-bar"></div>
+            </div>
+          </div>
+
+          <div class="trait">
+            <div class="trait-head">
+              <span>O</span>
+              <span id="oLabel">77</span>
+            </div>
+            <div class="single-bar">
+              <div id="barO" class="bar left-bar"></div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <p id="resultDesc" class="resultDesc"></p>
+      <!-- EXPLANATION -->
+      <div class="result-grid-2">
+        <section class="card">
+          <h3 class="section-title">タイプ説明</h3>
+          <p class="result-desc" id="resultTypeDesc"></p>
+        </section>
 
-      <div class="shareBox">
-        <button id="copyBtn" class="btn primary">結果をコピー</button>
-        <button id="retryBtn" class="btn sub">もう一度診断する</button>
+        <section class="card">
+          <h3 class="section-title">特徴</h3>
+          <ul class="result-bullets" id="resultBullets"></ul>
+        </section>
+      </div>
+
+      <!-- MAPS -->
+      <div class="result-grid-2">
+        <section class="card">
+          <h3 class="section-title">SM座標</h3>
+          <p class="subtext">横軸 = M度 / 縦軸 = S度</p>
+          <div class="sm-map-wrap">
+            <div class="axis-label top">S高</div>
+            <div class="axis-label bottom">S低</div>
+            <div class="axis-label left">M低</div>
+            <div class="axis-label right">M高</div>
+            <div class="cross vertical"></div>
+            <div class="cross horizontal"></div>
+            <canvas id="smChart"></canvas>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3 class="section-title">16タイプ配置</h3>
+          <p class="subtext">FBCOタイプの位置関係</p>
+          <div class="type-map-wrap" id="typeMap">
+            <div class="axis-label top">F強</div>
+            <div class="axis-label bottom">B強</div>
+            <div class="axis-label left">C強</div>
+            <div class="axis-label right">O強</div>
+            <div class="cross vertical"></div>
+            <div class="cross horizontal"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- RELATIONS -->
+      <div class="result-grid-2">
+        <section class="card">
+          <h3 class="section-title">近いタイプ</h3>
+          <div class="ranking-list" id="nearTypes"></div>
+        </section>
+
+        <section class="card">
+          <h3 class="section-title">相性の良いタイプ</h3>
+          <div class="ranking-list" id="compatibilityTypes"></div>
+        </section>
+      </div>
+
+      <!-- STATS -->
+      <section class="card">
+        <h3 class="section-title">みんなの統計</h3>
+        <div class="stats-grid">
+          <div class="mini-stat">
+            <div class="mini-label">診断総数</div>
+            <div class="mini-value" id="statTotal">--</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-label">同じ称号</div>
+            <div class="mini-value" id="statSameTitle">--</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-label">同じタイプ</div>
+            <div class="mini-value" id="statSameType">--</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-label">平均M度</div>
+            <div class="mini-value" id="statAvgM">--</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-label">平均S度</div>
+            <div class="mini-value" id="statAvgS">--</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-label">上位割合</div>
+            <div class="mini-value" id="statTopRate">--</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIONS -->
+      <div class="action-row">
+        <button class="primary-btn" id="copyBtn">結果をコピー</button>
+        <button class="ghost-btn" id="saveImageBtn">画像を保存</button>
+        <button class="ghost-btn" id="retryBtn">もう一度診断する</button>
       </div>
     </section>
   </main>
 
-  <script src="./app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
