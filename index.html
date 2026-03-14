@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>コミュニケーション16タイプ診断</title>
+  <meta name="description" content="コミュニケーション傾向を16タイプで診断するサイト" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="card hero" id="hero">
+      <p class="eyebrow">16 TYPE COMMUNICATION TEST</p>
+      <h1>コミュニケーション16タイプ診断</h1>
+      <p class="lead">
+        いじり耐性、攻め・受け、関係性、メンタル耐性、考え方の傾向から
+        あなたのタイプを表示します。
+      </p>
+      <button id="startBtn" class="btn primary">診断をはじめる</button>
+    </section>
+
+    <section class="card hidden" id="quizCard">
+      <div class="progressRow">
+        <span id="progressText">1 / 16</span>
+        <div class="progressBar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <p class="questionTag" id="questionTag">質問</p>
+      <h2 class="questionText" id="questionText"></h2>
+
+      <div class="choices" id="choices"></div>
+
+      <div class="navRow">
+        <button id="prevBtn" class="btn sub">戻る</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="resultCard">
+      <p class="eyebrow">YOUR TYPE</p>
+      <h2 id="resultTypeCode">FMCT</h2>
+      <h3 id="resultTypeName">クールな参謀</h3>
+      <p id="resultCatch" class="catch"></p>
+
+      <div class="axisBox">
+        <div><strong>思考：</strong><span id="axis1"></span></div>
+        <div><strong>受け/攻め：</strong><span id="axis2"></span></div>
+        <div><strong>関係性：</strong><span id="axis3"></span></div>
+        <div><strong>メンタル：</strong><span id="axis4"></span></div>
+      </div>
+
+      <p id="resultDesc" class="resultDesc"></p>
+
+      <div class="shareBox">
+        <button id="copyBtn" class="btn primary">結果をコピー</button>
+        <button id="retryBtn" class="btn sub">もう一度診断する</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
