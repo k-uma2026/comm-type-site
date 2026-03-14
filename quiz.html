@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>診断中 | SMタイプ診断</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="quiz-wrap">
+    <section class="quiz-card">
+      <div class="quiz-head">
+        <div class="quiz-badge">QUESTION</div>
+        <div id="progressText" class="progress-text">1 / 60</div>
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <div id="questionTag" class="question-tag">カテゴリ</div>
+      <h1 id="questionText" class="question-text">質問文</h1>
+      <p class="question-note">1 = 全く思わない / 5 = とてもそう思う</p>
+
+      <div id="choicesBox" class="choices-box"></div>
+
+      <div class="quiz-actions">
+        <button id="prevBtn" class="ghost-btn">戻る</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="./questions.js"></script>
+  <script src="./types.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
